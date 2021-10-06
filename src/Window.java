@@ -1,5 +1,6 @@
-import java.awt.Color;
-
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.*;
 import javax.swing.JFrame;
 
 public class Window {
@@ -8,6 +9,9 @@ public class Window {
 	private static int HEIGHT;
 	private static int WIDTH;
 	private static String windowName;
+	
+	private static JFrame frame;
+	private static Canvas canvas;
 	
 	//Constructor of the Window Class. Set the name, height, and width. Then run the createWindow() method.
 	public Window(String name, int width, int height) {
@@ -20,13 +24,19 @@ public class Window {
 	
 	//This is the method that actually creates the window.
 	public static void createWindow() {
-		JFrame frame = new JFrame(windowName);	//This sets the name.
+		frame = new JFrame(windowName);	//This sets the name.
 		frame.setSize(WIDTH,HEIGHT);			//This sets the size.
-		
-		frame.setBackground(Color.RED);
 		frame.setVisible(true);					//This makes the window show up on the screen.
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//This will close the window when you press the x button.
 		frame.setLocationRelativeTo(null);		//This will make the window appear in the middle of the screen.
+		
+		canvas = new Canvas();
+		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		canvas.setMinimumSize(new Dimension(WIDTH, HEIGHT));
+		canvas.setBackground(Color.RED);
+		
+		frame.add(canvas);
 		frame.pack();
 		
 	}
